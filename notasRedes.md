@@ -247,3 +247,19 @@ prompt #
 modo sub config (cofig-if)#
 
 `end` para salir al modo privilegiado
+
+# 2020-11-23
+
+## Software GNS3
+
+GNS3 es un simulador gráfico de red lanzado en 2008, que te permite diseñar topologías de red complejas y poner en marcha simulaciones sobre ellos permitiendo la combinación de dispositivos tanto reales como virtuales.
+
+### Instalación:
+
+    pip3 install gns3-gui gns3-server pyqt5
+
+se ejecuta con:
+
+    gns3
+
+
