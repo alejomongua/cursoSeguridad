@@ -262,4 +262,176 @@ se ejecuta con:
 
     gns3
 
+# 2020-11-25
 
+## Protocolo IPv4
+
+Tiene longitud de 32 bits, se divide en cuatro grupos de 8 bits cada uno llamados octetos, se representan en sistema decimal
+
+El formato es X.X.X.X donde cada X es un número entero entre 0 y 255
+
+Existen aproximadamente 4000 millones de IPs
+
+Tiene jerarquía, esto indica que está dividido en 2 partes: red y host
+
+La parte de red es la que cubre la máscara
+
+### Clases de IPv4 (obsoleto)
+
+Fue reemplazado en 1993 por CIDR porque se desperdiciaban muchas direcciones
+
+#### Clase A
+
+Rango: 0.0.0.0 a 127.255.255.255, máscara de 8
+
+#### Clase B
+
+Rango 128.0.0.0 a 191.255.255.255 máscara de 16
+
+#### Clase C
+
+Rango 192.0.0.0 a 223.255.255.255 máscara de 24
+
+#### Clase D
+
+Rango 224.0.0.0 a 239.255.255.255
+
+#### Clase E
+
+Rango 240.0.0.0 a 255.255.255.255
+
+### Rangos especiales de IPv4
+
+#### Rangos privados RFC 1918
+
+Clase A: 10.0.0.0-10.255.255.255
+Clase B: 172.16.0.0-172.31.255.255
+Clase C: 192.168.0.0-192.168.255.255
+
+#### Rango no específico
+
+0.0.0.0 - 0.255.255.255 solo utilizadas como direcciones de origen
+
+#### Red privada de NAT de proveedor de servicios
+
+100.64.0.0 - 100.127.255.255, se utilizan para la comunicaicón de un proveedor de servicio y los clientes cuando se realiza nuevamente un NAT por parte del proveedor
+
+#### Rango de bucle invertido
+
+127.0.0.0 - 127.255.255.255 -> Se asigna 127.0.0.1 a localhost
+
+#### Direcciones de documentación o Test-NET
+
+192.0.2.0 - 192.0.2.255
+
+### Máscara de subred
+
+Separa la porción de host de la porción de red: La parte de red está enmascarada
+
+### CIDR
+
+Classless interdomain routing, reemplazó las clases de IPv4, es una técnica que permite dividir las direcciones IP de una manera mucho más flexible
+
+El mascarado no se limita a los límites de los octetos
+
+### Análisis de tipos de IP dentro de una red
+
+Direcciones de identificación de red, host y difusión
+
+#### Dirección de identificación de red
+
+Es la primera dirección de la red (no asignable), que se caracteriza porque todos los bits de la porción de host son ceros
+
+#### Primera dirección de host
+
+Es la primera dirección válida o asignable a un host en la red que se caracteriza porque todos los bits de la porción de host son 0 excepto el último
+
+#### Última dirección de host
+
+Es la última dirección válida o asignable a un host en la red que se caracteriza porque todos los bits de la porción de host son 1 excepto el último que es 0
+
+#### Dirección de multidifusión (broadcast)
+
+Es la última dirección de la red (no asignable), que se caracteriza porque todos los bits de la porción de host son 1
+
+#### Rango asignable:
+
+Todas las direcciones entre la primera dirección de host y última dirección de host (inclusive)
+
+#### Dirección de la puerta de enlace o gateway
+
+Es cualquier dirección válida de la red que se configura a la interface de un router para permitir la comuicación hacia redes externas.
+
+### Problems de redes grandes
+
+Exceso de generación de mensajes de difusión que puede impactar negativamente en el rendimiento de la red
+
+* Operaciones de red bastante lentas
+
+* Sobrecarga en el proceso de los host, debido al exceso de broadcast
+
+Todos los host en una misma red plantea un desafio de administración y seguridad
+
+* Si algún equipo de la red es afectado por un virus o malware, este puede propagarse de manera directa a los demás equipos de la red local
+
+* Se torna más complejo realizar la aplicaicón de políticas de seguridad para una red no segmentada
+
+La solución es reducir el tamaño de la red dividiendola en redes más pequeñas
+
+Es posible realizar la división en subredes teniendo en cuenta aspectos físicos como:
+
+* Ubicación: ciudad, piso, edificio, etc
+
+* Area o departamento de la empresa: Contabilidad, administración, ventas, producción
+
+* Tipos de dispostivo: Impresoras, servidores, cámaras, portátiles, etc
+
+### Ejemplo de subdivisión de red
+
+Dividir la red 172.16.0.0/16 en cinco subredes de tamaño /19
+
+| Subred | Máscara       | CIDR | IP de red    | Rango asignable               | Broadcast      | Tamaño |
+| ------ | ------------- | ---- | ------------ | ----------------------------- | -------------- | ------ |
+| 1      | 255.255.224.0 | /19  | 172.16.0.0   | 172.16.0.1 - 172.16.31.254    | 172.16.31.255  | 8190   |
+| 2      | 255.255.224.0 | /19  | 172.16.32.0  | 172.16.32.1 - 172.16.63.254   | 172.16.63.255  | 8190   |
+| 3      | 255.255.224.0 | /19  | 172.16.64.0  | 172.16.64.1 - 172.16.96.254   | 172.16.96.255  | 8190   |
+| 4      | 255.255.224.0 | /19  | 172.16.96.0  | 172.16.96.1 - 172.16.127.254  | 172.16.127.255 | 8190   |
+| 5      | 255.255.224.0 | /19  | 172.16.128.0 | 172.16.128.1 - 172.16.160.254 | 172.16.160.255 | 8190   |
+
+Dividir la red 100.64.0.0/10 en las siguietes subredes
+
+a. 850 host
+b. 197 host
+c. 432 host
+d. 62 host
+e. 1398 host
+
+| Subred | Máscara         | CIDR | IP de red    | Rango asignable               | Broadcast      | Tamaño |
+| ------ | --------------- | ---- | ------------ | ----------------------------- | -------------- | ------ |
+| e      | 255.255.248.0   | /21  | 100.64.0.0   | 100.64.0.1 - 100.64.7.254     | 100.64.7.255   | 2046   |
+| a      | 255.255.252.0   | /22  | 100.64.8.0   | 100.64.8.1 - 100.64.11.254    | 100.64.11.255  | 1022   |
+| c      | 255.255.254.0   | /23  | 100.64.12.0  | 100.64.12.1 - 100.64.13.254   | 100.64.13.255  | 510    |
+| b      | 255.255.255.0   | /24  | 100.64.14.0  | 100.64.14.1 - 100.64.14.254   | 100.64.14.255  | 253    |
+| d      | 255.255.255.192 | /26  | 100.64.15.0  | 100.64.15.1 - 100.64.15.62    | 100.64.15.63   | 62     |
+
+Una universidad requiere diseñar la división de su red de acuerdo a sus areas, a partir de la IP 10.20.0.0/16, realice el direccionamiento de las siguietnes subredes
+
+Docentes: 90 hosts
+Estudiantes: 2250 hosts
+TI 30 hosts
+Administrativo 36 hosts
+Recursos humanos 14 hosts
+
+| Subred      | Máscara         | CIDR | IP de red    | Rango asignable             | Broadcast      | Tamaño |
+| ----------- | --------------- | ---- | ------------ | --------------------------- | -------------- | ------ |
+| Estudiantes | 255.255.240.0   | /20  | 10.20.0.0    | 10.20.0.1 - 10.20.15.254    | 10.20.15.255   | 4094   |
+| Docentes    | 255.255.255.128 | /25  | 10.20.16.0   | 10.20.16.1 - 10.20.16.127   | 10.20.16.255   | 126    |
+| Admin       | 255.255.255.192 | /26  | 10.20.16.128 | 10.20.16.129 - 10.20.16.190 | 10.20.16.191   | 62     |
+| TI          | 255.255.255.224 | /27  | 10.20.16.192 | 10.20.16.193 - 10.20.16.222 | 10.20.16.223   | 30     |
+| RRHH        | 255.255.255.240 | /28  | 10.20.16.224 | 10.20.16.225 - 10.20.16.238 | 10.20.16.239   | 14     |
+
+## IPv6
+
+Contiene direcciones de 128 bits
+
+Se representa en hexadecimal, se separa en 8 grupos de 16 bits cada uno
