@@ -258,9 +258,23 @@ GNS3 es un simulador gráfico de red lanzado en 2008, que te permite diseñar to
 
     pip3 install gns3-gui gns3-server pyqt5
 
-se ejecuta con:
+También se necesita el ejecutable de vpcs, para eso se debe compilar desde la fuente:
+
+    git clone https://github.com/GNS3/vpcs
+    cd vpcs/src
+    bash mk.sh
+
+Se generará el ejecutable de vpcs en la carpeta src. Debe configurarse ese ejecutable en las preferencias del programa
+
+se ejecuta la GUI de gns3 con:
 
     gns3
+
+Esto automáticamente inicia también el servidor
+
+Se necesitan algunos paquetes desde el gestor de paquetes:
+
+    sudo apt install wireshark dynamips libpcap-dev
 
 # 2020-11-25
 
@@ -435,3 +449,92 @@ Recursos humanos 14 hosts
 Contiene direcciones de 128 bits
 
 Se representa en hexadecimal, se separa en 8 grupos de 16 bits cada uno
+
+# 2020-11-27
+
+## IPv6
+
+![](images/estructura-ipv6.png)
+
+IANA entrega el prefijo global /23 al RIR (Registro regional de internet)
+
+Los ISP tienen un prefijo /32
+
+Los ISP le entregan a sus clientes /48
+
+### Reglas para comprimir direcciones IPv6
+
+La primera regla que permite reducir la notación de direcciones IPv6 es que se puede omitir cualquier 0 inicial en cualquier sección de 16 bits
+
+La segunda regla es omitir cadnas contiguas compuestas por cero y reemplazarlos por dos puntos dobles (::). Esto se puede hacer una sola vez.
+
+![](images/notacion-comprimida-ipv6.png)
+
+### Tipos de direcciones IPv6
+
+* Unicast
+
+* Multicast
+
+* Anycast
+
+### Jerarquía del prefijo en IPv6
+
+IPv6 no utiliza la notación decimal punteada para la máscara de red
+
+La duración del prefijo indica la porción de red de una dirección IPv6
+
+### Proceso de generación automático de generación de IPv6 EUI-64 o generadas aleatoriamente
+
+Se usa la dirección MAC del cliente
+
+Se invierte el séptimo bit y se insertan 16 bits en la mitad de la MAC address FF FE
+
+### Direcciones de vínculo local (link-local)
+
+Después de que se asigna una dirección unicast glogbal a una interfaz, el dispositivo con ipv6 habilitado genera la dirección link-local automáticamente
+
+Debe haber una dirección link-local que permita que un dispositivo se comunique con otros dispositivos con ipv6 habilitado en la misma subred
+
+Utiliza la direcicón link-local del router local como su dirección IPv6 de gateway predeterminado
+
+Los routers intercambian mensajes de protocolo de enrutamiento dinámico mediante direcciones link-local
+
+Las tablas de enrutamiento de los routers utilizan la dirección link-local para identifiacr el router
+
+Se asigna en forma dinámica mediante el prefijo FE80::/10 y la ID de la interfaz
+
+### Direcciones IPv6 multicast asignadas
+
+tienen el prefijo FFxx::/8
+
+Existen dos tipos de direcciones IPv6 multicast:
+
+* Dirección de multicast asignada
+
+* Dirección de multicast de nodo solicitado
+
+* Multicas a todos los nodos FF02::1
+
+![](images/multicast-todos-los-nodos.png)
+
+#### Comandos IOS para IPv6:
+
+    configure
+    interface fastEthernet 0/0
+    no shutdown
+    ipv6 address (direccion)/(longitud del prefijo)
+
+COMANDO IOS Para unirse a unicast de routers (FF02::2)
+
+    ipv6 unicast-routing
+
+Enrutamiento estático
+
+    ipv6 (prefijo de destino)/(longitud de prefijo) (IPv6 del siguiente salto)
+    # ó
+    ipv6 (prefijo de destino)/(longitud de prefijo) (INTERFAZ DE SALIDA) (IPv6 Link local address)
+
+Ejemplo:
+
+![](images/topologia-ipv6.png)
