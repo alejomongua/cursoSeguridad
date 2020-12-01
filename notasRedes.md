@@ -538,3 +538,213 @@ Enrutamiento estático
 Ejemplo:
 
 ![](images/topologia-ipv6.png)
+
+# 2020-11-30
+
+## Comandos IOS
+
+Comando IOS para ver la mac-address-table
+
+    show mac-address-table
+
+Ver las características de la MAC address:
+
+    show mac-address-table count
+
+En los servidores DHCP puedo ver la tabla dhcp
+
+    show ip dhcp binding
+
+Muestra los dispositivos conectados:
+
+    show cdp neighbors
+
+Limpia la tabla cdp:
+
+    clear cdp table
+
+Se le pone contraseña al modo privilegiado (el password en este caso es passwd123)
+
+    enable password passwd123
+
+Habilitar acceso remoto por telnet
+
+    username admin password cisco123
+    line con 0
+    password cisco123
+    login
+    line vty 0 4
+    login local
+    transport input all
+    end
+
+acceder:
+
+    telnet 192.168.0.1
+
+## Ataques de red
+
+### Ataque 1
+
+La contraseña se muestra en texto plano
+
+    show running-config
+
+Solución:
+
+    configure terminal
+    service password-encryption
+
+### Ataque 2:
+
+Teniendo el hash de la contraseña se puede descifrar fácilmente (cisco password cracker)
+
+Solución
+
+Cifrar las contraseñas con algoritmo de una sola via
+
+Desactivar el password
+
+    no enable password 
+    no username admin
+
+Usar password md5
+
+    enable secret cisco123
+    username admin secret passwd123
+    line con 0
+    no password
+    login
+    line vty 0 4
+    login local
+    transport input all
+    end
+    wr
+
+### Ataque 3:
+
+Si la contraseña es debil es vulnerable a ataques de fuerza bruta
+
+Solución:
+
+Usar contraseñas largas y seguras
+
+    security passwords min-length 12
+
+### Ataque 4:
+
+La contraseña es capturada en el transporte usando herramientas como wireshark
+
+Solución:
+
+Usar ssh en vez de telnet
+
+    configure terminal
+    ip domain name midominio.co
+    ip ssh version 2
+    crypto key generate rsa modulus 1024
+    line vty 0 4
+    transport input ssh
+    end
+    wr
+
+Solo en routers, para limitar la frecuencia de los intentos fallidos:
+
+    login block-for 300 atemps 5 within 120
+
+### Ataque 5:
+
+(Para los switch) Desbordamiento de tabla de MAC
+
+(Desde kali Linux)
+
+    macof -i eth0
+
+Cuando un switch llena su mac-address-table se comporta como un hub: envía el tráfico por todos los puertos
+
+### Ataque 6:
+
+(Para los servidores de DHCP) DHCP starvation
+
+(Desde Kali Linux)
+
+    sudo yersinia -G
+
+Es un programa con interfaz gráfica para comprobar vulnerabilidades de red, desde allí se puede enviar un ataque de DHCP 
+
+### Ataque 7
+
+Ataque de CDP (también a través de yersinia)
+
+Solución:
+
+    no cdp run
+
+también se puede desactivar cdp solo por la interfaz por la que llega el ataque
+
+## Port security
+
+Tres opciones:
+
+* Shutdown
+
+* Protect
+
+* Restrict
+
+Asignar mac estática
+
+    configure terminal
+    switchport port-security
+    do show port
+    switchport port-security mac-address XX:XX:XX:XX:XX:XX
+
+Cuando hay una violación, se desactiva el puerto.
+
+Para recuperarse del error, hay que apagar la interfaz y volverla a encender
+
+    (config-if)#shutdown
+    (config-if)#no-shutdown
+
+Recuperarse automáticamente después de 30 segundos
+
+    (config-if)#errdisable recovery cause psecure-violation
+    (config-if)#errdisable recovery interval 30
+
+Vencimiento de tiempo de inactividad (10 minutos en este caso)
+
+    switchport port-security aging time 10
+
+Set max MAC in port
+
+    switchport port-security max 3
+
+### Ataque 8
+
+Spanning tree root role
+
+#### STP (Spanning tree protocol)
+
+![](images/stp.png)
+
+Bloque automáticamente los enlaces redundantes
+
+### Ataque 9
+
+Forzar un puerto a volverse troncal
+
+Ataque DTP de yersinia
+
+Ver interfaces troncales:
+
+    show interfaces trunk
+
+Mitigación:
+
+Desactivar la negociación del enlace troncal
+
+    interface g1/0
+    switchport nonegotiate
+    switchport mode access
+    do show interface trunk
+
