@@ -748,3 +748,66 @@ Desactivar la negociación del enlace troncal
     switchport mode access
     do show interface trunk
 
+# 2020-12-02
+
+![](images/topologia-seguridad.png)
+
+## Comandos IOS
+
+Mostrar redes conocidas:
+
+    show ip route
+
+## Seguridad en capa 2 y capa 3
+
+Desactivar capa 3 en switch:
+
+    no ip routing
+
+### OSPF
+
+Protocolo de enrutamiento dinámico para discubrir redes remotas de forma dinámica
+
+Enrutamiento por OSPF
+
+    configure terminal
+    router ospf 200
+    router-id 1.1.1.1
+    exit
+
+    interface f0/0
+    ip ospf 200 area 0
+    exit
+
+Configurar enlaces troncales (en switch de capa 3 de Cisco)
+
+    configure terminal
+    interfac range g0/0,g1/0
+
+    switchport trunk encapsulation dot1q
+    switchport trunk mode trunk
+    switchport nonegotiate
+
+Aplicar port security a todas las interfaces que están desconectadas y conectadas a equipos finales
+
+    configure terminal
+    interfac range g0/0,g1/0 # Todas las interfaces
+    switchport mode access
+    switchport nonegotiate
+    switchport port-security maximum 1
+    switchport port-security mac-address sticky
+    switchport port-security violation shutdown
+    switchport port-security mac-address sticky
+    end
+    errdisable recovery cause psecure-violation
+    errdisable recovery interval 30
+
+Apagar puertos no utilizados
+
+    configure terminal
+    interface range f0/0-1
+
+## Autenticación con servidor radius
+
+Se crea una autenticación centralizada para los dispositivos
+
