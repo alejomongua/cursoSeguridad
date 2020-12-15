@@ -232,3 +232,268 @@ La siguiente lista detalla la cantidad mínima de documentos y registros requeri
 |Resultados de acciones correctivas|10.1|
 |Registros sobre actividades de los usuarios, excepciones y eventos de seguridad|A 12.4.1, A 12.4.3|
 
+# 2020-12-14
+
+### 8 operación
+
+#### 8.1 Planificación y control operacional
+
+Se debe planificar, implementar y controlar los procesos necesarios para cumplir los requisitos y para implementar las accioens determinadas en la  gestión de riesgos
+
+#### 8.2 Evaluación de riesgos de la seguridad de la información
+
+Se debe llevar a cabo evaluaciones de riesgos a intervalos planificados o cuando se propongan u ocurran cambios significativos. Ver 6.1.2.a
+
+#### 8.3 Tratamiento de riesgos de la seguridad de la información
+
+Se debe implementar un plan de tratamiento de riesgos, se debe conservar información documentada sobre los planes de tratamiento de riesgos
+
+### 9 Evaluación de desempeño
+
+#### 9.1 Seguimiento, medición, análisis y evaluación
+
+Se debe determinar
+
+* A que se require hacer seguimiento y medir
+* Los métodos de seguimiento, medición, análisis y evaluación
+* Quién debe llevar a cabo el seguimiento y la medición
+* Cuando se deben analizar y evaluar los resultados
+* Quien debe analizar y evaluar los resultados
+
+##### Matriz de comunicación interna y externa
+
+|A qué realizar seguimiento|Método a utilizar|Cuando realizar el seguimiento y la medición|Responsabñe|Cuando analizar y evaluar los resultados|Responsable de evaluar los resultados|
+|--------|-----------|-----------|-----------|-----------|---------|
+|política de control de acceso|Verificación del indicador de la política de control de acceso. Verificar los incidentes relacionados con accesos no autorizados|Según la periodicidad definida|Responsable de la seguridad de la información en la organización. Auditoría|Según la periodicidad definida|Responsable de la seguridad de la información en la organización. Auditoría|
+
+#### 9.2 Auditoría interna
+
+Se debe llevar a cabo auditorías internas a intervalos planificados para proporcionar información acerca de si el SGSI es conforme con:
+
+* Los propios requisitos de la organización para el SGSI
+* Los requisitos de la norma
+
+Se debe:
+
+* Planificar, implemntar y mantener uno o varios programas de auditoría que tenga: frecuencia, métodos, responsabilidades, informes, etc.
+* Definir criterios y alcance
+* Seleccionar los auditores
+* Asegura de que los resultados se informen a la dirección
+* Conservar información documentada de la implementación del programa de auditoría y de los resultados de ésta
+
+#### Tipos de auditoría
+
+##### De primera parte
+
+Auditorías internas que pueden ser realizadas por personal de la organización o por una entidad externa
+
+##### De segunda parte
+
+Una auditoría realizada por una organización a sus proveedores
+
+##### De tercera parte
+
+Una auditoría realizada por una organización independiente comercial y contractualmente a la organización, sus proveedores y clientes. Es una auditoría realizada por un organismo que esté certificada para otorgar la certificacion al SG al ente auditado
+
+**Nota:** Cuando se adjuntan dos o más sistemas de gestión de diferentes disciplinas (ej, Calidad, ambiental, seguridad, etc) esto se denomina auditoría combinada
+
+#### Principios de auditoría
+
+Conceptos ISO 19011
+
+**Integridad** Considerado el fundamento del profesionalísmo del auditor
+
+**Presentación ecuanime** La oblicación de informar con veracidad y exactitud
+
+**Debido cuidado profesional** La aplicación diligencia y juicio al auditar. Los auditores deben proceder con el debido cuidado, de acuerdo con la importancia de la tarea que desempeñan y la confianza depositada en ellos por el cliente de la auditoría por otras partes interesadas
+
+**Confidencialidad** Seguridad de la información. El auditor debe mantener discreción en el uso y protección sobre la información obtenida en el curso de la auditoría
+
+**Independencia** La base de la imparcialidad de la auditoría y objetividad en las concluciones de la auditoría. El auditor debe ser independiente y debe actuar en todos los casos libre de cualquier conflicto de interés
+
+**Enfoque basado en la evidencia** El método racional para alcanzar las concluciones de la auditoría fiables y reproducibles en un proceso de auditoría sistemático. La evidencia de la autoridad es verificable. Está basada en muestras de la información disponible, ya que una auditoría se lleva a cabo durante un periodo de tiempo delimitado y con recursos finitos
+
+### Conceptos de la ISO 19011
+
+**Auditoría**
+
+Proceso sistemático, independiente y documentado para obtener evidencias de la auditoría y evaluarlas de manera objetiva.
+
+**Alcance de la auditoría (3.14)**
+
+Extensión y límites de una auditoría
+
+El alcance de la auditoría incluye generalmente una descripción de las ubicaciones físicas, las unidades organizacionales, actividades y procesos, así como el periodo de tiempo cubierto
+
+**Programa de auditoría (3.13)**
+
+Conjunto de una o más auditorías planificadas para un periodo de tiempo determinado y dirigidas hacia un propósito específico
+
+Un programa de auditoría incluye todas las actividades necesarias para planificar, organizar y llevar a cabo las auditorías
+
+**Plan de auditoría (3.15)**
+
+Descripción de las actividades y de los detalles acordados de una auditoría
+
+**Criterios de auditoría (3.2)**
+
+Conjunto de políticas, procedimientos o requisitos utilizados como referencia para comparar contra la evidencia obtenida
+
+**Auditor (3.8)**
+
+Persona con la competencia para conducir una auditoría
+
+**Evidencia de auditoría (3.3)**
+Registros, declaraciones o cualquier otra información relevante que esté relacionada con los criterios de auditoría y que sea verificable
+
+**Competencia (3.17)**
+
+Habilidad para aplicar los conocimientos y habilidades con el fin de obtener los resultados deseados
+
+**Experto técnico (3.10)**
+Persona que proevee conocimiento específico o experiencia al euqipo auditor. No actua como auditor.
+
+**Hallazgos de la auditoría (3.4)**
+
+Resultados de la evaluación de la evidencia recopilada durante la auditoría, frente a los criterios de auditoría
+
+**Conclusión de auditoría (3.5)**
+
+Resultado de una auditoría que proporciona el equipo auditor tras considerar los objetivos de la auditoría y todos los hallazgos resultado de la auditoría
+
+**Observador (3.11)**
+
+Persona que acompaña el equipo de auditoría pero no actua como auditor
+
+**Auditado (3.7)**
+
+Organización a ser auditada
+
+**Guia (3.12)**
+
+Persona designada por el auditado para ayudar al equipo de auditoría
+
+#### 9.2 Auditoría interna
+
+![](images/auditoria-interna.png)
+
+#### 9.2 Programa de auditoría
+
+##### 1.1 Definir el responsable del programa de auditoría
+
+* Establecer objetivos y amplitud del programa de auditoría
+* Establecer responsabilidades y procedimientos y asegurarse de la asignación de recursos
+* Asegurarse de la implementación del programa de auditoría
+* Asegurarse de mantener los registros
+* Realizar seguimiento, revisar y mejorar el programa de auditoria
+
+##### 1.2 Establecer el programa de auditoría (alcance)
+
+1.2.1 Objetivo
+a) Cumplir con los requisitosdel SGSI
+b) Verificar la conformidad con los requisitos contractuales
+c) Obtener y mantener la confianza en la capacidad de un proveedor
+d) Contribuir con la mejora del SGSI
+1.2.2 Extensión
+a) Alcance y duración de cada auditoria
+b) cualquier aspecto idiomático, cultural o social
+c) el número, la importancia y la ubicación de las actividades
+d) las normas, requisitos legales, reglamentarios y contractuales
+1.2.3 Recursos
+1.2.4 Procedimiento
+
+##### Implementación del programa de auditoría (H)
+2.1 Ejecución del calendario de auditorías
+2.2 Selección del equipo auditor
+* Competencia del auditor y evaluación de desempeño
+* Selección del equipo auditor (acuerdo de confidencialidad)
+2.3 Conducción de las actividades de auditoría
+2.4 Conservación de los registros
+* Plan de auditoría
+* Informes de auditoría
+* Informe de no conformidades
+* Informe de acciones correctivas y preventivas
+* Informes de seguimiento de la auditoría
+
+##### Seguimiento y revisión del programa de auditoría (V)
+
+* Resultados y tendencias
+
+* Prácticas alternativas de auditoria o nuevas
+
+* Conformidad procedimientos
+
+* Expectativas de las partes interesadas
+
+* Registros de resultados
+
+* Desempeño equipo auditor
+
+##### Mejora del programa de auditoría (A)
+
+3.1  Identificación de la necesidad de acciones correctivas y preventivas.
+3.2  Identificación de oportunidades de mejora
+4.1 Capacitación de auditores (Mantenimiento y mejora de la competencia)
+4.2 Aumento en la eficiencia del programa
+4.3 Adecuación a las necesidades cambiantes de las partes interesadas
+4.4 Coherencia en la fiabilidad del equipo auditor
+
+##### Plan de auditoría
+
+* Objetivos y alcance
+* Documento o estándar de referencia
+* Lugares y contactos claves
+* Areas o dependencias que serán auditadas
+* Determinación de las cláusulas claves para preparar la lista de verificación
+* Personal de contacto
+* Definición del rol de cada miembro del grupo de auditores.
+* Fechas de la revisión.
+* Hora y duración esperada para cada actividad principal.
+* Programación de reuniones.
+* Claridad en los requisitos de confidencialidad.
+* Distribución del informe y  fecha esperada de la publicación.
+* Elaboración y preparación de los documentos de trabajo.
+
+![](images/formato-plan-auditoria1.png)
+![](images/formato-plan-de-auditoria2.png)
+
+### Anexo A
+
+![](images/anexo-a.png)
+
+## Segunda parte: Complemento de auditoría
+
+### Tipos de hallazgos
+
+* No conformidad
+* Observacion
+
+### Tips para redactar el hallazgo
+
+* No conformidad (lo que incumple)
+* Numeral, política, condición o referenciación que se incumple
+* Evidencia objetiva
+
+### Descripción del hallazgo
+
+![](images/cinco-preguntas.png)
+
+### Recomendaciones
+
+Evitar palabras como:_nadie_, _ninguno_, _todos_, _siempre_, _nunca_, _algunos_, _bastantes_, _demasiados_, _pocos_, _varios_ o _en ocaciones_
+
+No incluya un hallazgo si no encuentra evidencia suficiente
+
+### Ejercicios:
+
+##### Ejercicio 1
+
+Durante la realización de auditoria en la organización "SSCGraphics", el Gerente de la empresa explica que cuando usted vaya al proceso de producción, no va encontrar al Director de Producción ni a dos Operadores considerados fundamentales para el mismo, debido a que fueron retirados por problemas de bajo desempeño.
+Usted pregunta ¿cuanto hace que fueron retirados? Le responden que desde hace tres meses, pues el personal es contratado a término fijo y no han sido reemplazados porque el jefe financiero aún no ha designado los recursos necesarios.
+Usted escribe su comentario en su lista de chequeo.Así mismo usted pregunta ¿Cómo ha definido las competencias para el Director de producción, Operador del servidor de correo y Operador del servidor de aplicaciones?, el Gerente le entrega unos documentos y explica que ha sido un trabajo muy bueno, realizado para definir las características de cada cargo.
+Después de revisarlos, sólo observa definidas las responsabilidades.
+Usted verifica los registros de terminación de la contratación laboral y no se encuentran.
+
+**Hallazgo**
+
+Durante la revisión de los registros de terminación de la contratación laboral, no se encuentran los registros de la terminación del contrato del director de producción ni los de dos operadores. Lo que incumple con  la norma ISO27001 en el anexoA control A.7.3.1 Terminación o cambio de responsabilidades de empleo.
